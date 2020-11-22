@@ -11,10 +11,23 @@ class CategoryManager extends PostManager {
         
         return await categoryModel.findOne({ 'name': object.name});
     }
-    addCategory() {}
+    async addCategory(document: categoryInterface) {
+        if(typeof document !== "object") throw new Error("categoryManager.addCategory() - This method type must be an object");
+
+        await new categoryModel({
+            name: document.name,
+            description: document.description,
+            posts: []
+        }).save()
+    }
     updateCategory() {}
     deleteCategory() {}
 }
 
 
 export default CategoryManager;
+
+interface categoryInterface {
+    name: String,
+    description: String
+}
