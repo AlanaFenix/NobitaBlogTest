@@ -1,5 +1,6 @@
 import PostManager from './PostManager'
 import categoryModel from '../providers/schemas/categoryModel'
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 class CategoryManager extends PostManager {
     constructor() {
@@ -20,14 +21,18 @@ class CategoryManager extends PostManager {
             posts: []
         }).save()
     }
-    updateCategory() {}
-    deleteCategory() {}
+    async updateCategory(object: { categoryName: string, props: categoryInterface}) {
+        await categoryModel.findOneAndUpdate({ name: object.categoryName}, object.props)
+    }
+    async deleteCategory(object: { categoryName: string}) {
+        await categoryModel.findOneAndDelete({ name: object.categoryName})
+    }
 }
 
 
 export default CategoryManager;
 
 interface categoryInterface {
-    name: String,
-    description: String
+    name?: String,
+    description?: String
 }

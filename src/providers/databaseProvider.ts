@@ -5,7 +5,8 @@ const databaseURL = 'mongoose url :clown:'
 function databaseConnect() {
     mongoose.connect(databaseURL, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false,
     }).then(() => {
         console.log(`[DATABASE] Succesfully connected.`)
     }).catch((err) => {
