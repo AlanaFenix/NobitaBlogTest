@@ -1,6 +1,5 @@
 import PostManager from './PostManager'
 import categoryModel from '../providers/schemas/categoryModel'
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 class CategoryManager extends PostManager {
     constructor() {
