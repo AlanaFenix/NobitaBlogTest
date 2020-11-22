@@ -11,7 +11,7 @@ class CategoryManager extends PostManager {
         
         return await categoryModel.findOne({ 'name': object.name});
     }
-    async addCategory(document: categoryInterface) {
+    async createCategory(document: categoryInterface) {
         if(typeof document !== "object") throw new Error("categoryManager.addCategory() - This method type must be an object");
 
         await new categoryModel({
